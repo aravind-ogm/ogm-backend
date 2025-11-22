@@ -1,16 +1,31 @@
 package com.ogm.market.service;
 
-import com.ogm.market.model.Property;
-import org.springframework.stereotype.Service;
+import com.ogm.market.dto.PropertyRequest;
+import com.ogm.market.dto.PropertyResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.Arrays;
-import java.util.List;
+public interface PropertyService {
 
-@Service
-public class PropertyService {
+    Page<PropertyResponse> listProperties(
+            String q,
+            String type,
+            Long minPrice,
+            Long maxPrice,
+            Integer minSqft,
+            Integer maxSqft,
+            Boolean rera,
+            Integer bhk,
+            String facing,
+            String furnishing,
+            Pageable pageable
+    );
 
-    public List<Property> getAllProperties() {
-        return Arrays.asList(new Property(1L, "Modern Apartment", "Whitefield, Bengaluru", "₹75 Lakhs", "/images/prop1.jpg", "Apartment", "1200", true), new Property(2L, "Luxury Villa", "Koramangala, Bengaluru", "₹2.1 Cr", "/images/prop2.jpg", "Villa", "2800", true), new Property(3L, "3BHK Premium Flat", "Indiranagar, Bengaluru", "₹1.5 Cr", "/images/prop3.jpg", "Flat", "1600", false), new Property(4L, "Ultra Luxury Penthouse", "Hebbal, Bengaluru", "₹3.5 Cr", "/images/prop4.jpg", "Penthouse", "3100", true));
-    }
+    PropertyResponse getProperty(Long id);
 
+    PropertyResponse createProperty(PropertyRequest request);
+
+    PropertyResponse updateProperty(Long id, PropertyRequest request);
+
+    void deleteProperty(Long id);
 }
