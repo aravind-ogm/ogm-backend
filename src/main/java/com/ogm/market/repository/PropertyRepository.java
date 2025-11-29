@@ -13,7 +13,7 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 
     @Query("""
         SELECT p FROM Property p
-        WHERE 
+        WHERE
             (:q IS NULL OR LOWER(p.title) LIKE %:q%
                 OR LOWER(p.location) LIKE %:q%
                 OR LOWER(p.description) LIKE %:q%

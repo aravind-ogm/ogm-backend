@@ -2,6 +2,7 @@ package com.ogm.market.dto;
 
 import lombok.Builder;
 import lombok.Data;
+
 import java.util.List;
 
 @Data
@@ -17,11 +18,12 @@ public class PropertyResponse {
     private String type;
     private String sqft;
     private boolean reraApproved;
+    private boolean soldOut;
 
-    private List<String> mainImages;   // ⭐ NEW — homepage carousel images
-    private List<String> amenities;    // ⭐ NEW — features & amenities
+    private List<String> mainImages;
+    private List<String> amenities;
 
-    private List<String> images;       // gallery images
+    private List<String> images;
 
     private Integer bedrooms;
     private Integer bathrooms;

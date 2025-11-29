@@ -10,28 +10,22 @@ import java.nio.file.Paths;
 @Service
 public class BrochureService {
 
-    // Path where the generated brochure lives (adjust if you move it)
-    private final Path brochurePath = Paths.get("src/main/resources/static/brochures/ogm-brochure.pdf");
+    // Folder where brochure files are stored
+    private final Path brochureDir = Paths.get("src/main/resources/static/brochures");
 
-
-    /**
-     * For demo we return the file path. In production, you should return a public HTTPS URL
-     * to the brochure (S3 or static hosting), or stream the file via a download endpoint.
-     */
-    public String getBrochureFilePath() {
-        return brochurePath.toString();
+    // Check if brochure exists
+    public boolean brochureExists(String filename) {
+        return Files.exists(brochureDir.resolve(filename));
     }
 
-    public boolean brochureExists() {
-        return Files.exists(brochurePath);
+    // Return full brochure path for download
+    public Path getBrochurePath(String filename) {
+        return brochureDir.resolve(filename);
     }
 
-    public Path getBrochurePath() {
-        return brochurePath;
-    }
-
-    // you can add logging/storage of the BrochureRequest (save to DB) here
+    // Save lead / request (optional)
     public void recordRequest(BrochureRequest req) {
-        // TODO: persist to database or analytics
+        // TODO: save this to DB later
+        System.out.println("Brochure request saved: " + req.getMobile());
     }
 }

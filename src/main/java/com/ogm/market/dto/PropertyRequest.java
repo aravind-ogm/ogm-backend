@@ -1,5 +1,6 @@
 package com.ogm.market.dto;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class PropertyRequest {
     private String sqft;
     private boolean reraApproved;
 
-    private List<String> mainImages;  // ⭐ NEW
-    private List<String> amenities;   // ⭐ NEW
+    private List<String> mainImages;
+    private List<String> amenities;
 
     private List<String> images;
 
@@ -32,4 +33,5 @@ public class PropertyRequest {
 
     private String description;
     private String videoUrl;
+
 }

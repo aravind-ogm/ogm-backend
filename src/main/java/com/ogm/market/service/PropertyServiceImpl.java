@@ -115,6 +115,7 @@ public class PropertyServiceImpl implements PropertyService {
                 .type(p.getType())
                 .sqft(p.getSqft())
                 .reraApproved(p.isReraApproved())
+                .soldOut(p.isSoldOut())
 
                 .mainImages(p.getMainImages() == null ? null :
                         p.getMainImages().stream().map(this::prefix).collect(Collectors.toList()))

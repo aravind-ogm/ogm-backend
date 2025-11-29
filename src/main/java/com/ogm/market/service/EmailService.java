@@ -33,7 +33,11 @@ public class EmailService {
         // Set basic headers
         helper.setFrom(mailSenderUsername());            // sender (the configured SMTP user)
         helper.setTo(RECEIVER_EMAIL);                    // recipient
-        helper.setReplyTo(form.getEmail());              // reply goes to the submitter
+//        helper.setReplyTo(form.getEmail());              // reply goes to the submitter
+        if (form.getEmail() != null && !form.getEmail().isBlank()) {
+            helper.setReplyTo(form.getEmail());
+        }
+
         helper.setSubject("New Contact Request from " + safe(form.getName()));
 
         // Plain text fallback
@@ -154,7 +158,11 @@ public class EmailService {
 
         return template
                 .replace("{{NAME}}", escapeHtml(f.getName()))
-                .replace("{{EMAIL}}", escapeHtml(f.getEmail()))
+//                .replace("{{EMAIL}}", escapeHtml(f.getEmail()))
+                .replace("{{EMAIL}}", escapeHtml(
+                        (f.getEmail() == null || f.getEmail().isBlank()) ? "Not provided" : f.getEmail()
+                ))
+
                 .replace("{{MOBILE}}", escapeHtml(f.getMobile()))
                 .replace("{{MESSAGE}}", escapeHtml(f.getMessage()));
     }

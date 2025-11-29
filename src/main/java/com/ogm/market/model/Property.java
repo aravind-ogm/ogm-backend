@@ -29,6 +29,10 @@ public class Property {
     private String type;
     private String sqft;
     private boolean reraApproved;
+    private boolean soldOut;
+    @Column(name = "brochure_file")
+    private String brochureFile;   // example: "property-12.pdf"
+
 
     @ElementCollection
     @CollectionTable(name = "property_main_images", joinColumns = @JoinColumn(name = "property_id"))
